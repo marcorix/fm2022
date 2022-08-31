@@ -5,7 +5,9 @@ class ClubsController < ApplicationController
     @markers = @clubs.geocoded.map do |club|
       {
         lat: club.latitude,
-        lng: club.longitude
+        lng: club.longitude,
+        info_window: render_to_string(partial: "info_window", locals: {club: club}),
+        image_url: helpers.asset_url("ball.png")
       }
     end
   end
