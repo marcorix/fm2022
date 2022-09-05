@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_01_082452) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_02_142236) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_082452) do
     t.integer "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "profile_image"
+  end
+
+  create_table "team_players", force: :cascade do |t|
+    t.bigint "player_id", null: false
+    t.bigint "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_team_players_on_player_id"
+    t.index ["team_id"], name: "index_team_players_on_team_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -75,5 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_082452) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "team_players", "players"
+  add_foreign_key "team_players", "teams"
   add_foreign_key "teams", "users"
 end

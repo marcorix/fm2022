@@ -1,4 +1,5 @@
 class Player < ApplicationRecord
+  has_one_attached :photo
 
   include PgSearch::Model
   pg_search_scope :search_by_role_and_name_and_club_and_nationality,

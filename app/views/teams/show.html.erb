@@ -1,0 +1,12 @@
+<div class="container">
+  <h1><%= @team.name.capitalize %></h1>
+
+  <% @team.team_players.each do |team_player| %>
+    <p><%= team_player.player.name %></p>
+  <% end %>
+  <hr>
+  <%= simple_form_for [@team, @team_player] do |f| %>
+    <%= f.association :player %>
+    <%= f.submit value: "Add Player"  %>
+  <% end %>
+</div>
