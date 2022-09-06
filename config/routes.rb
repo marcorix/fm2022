@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :players, only: [:index, :show]
 
-  resources :teams, only: [:show, :new, :create] do
+  resources :teams, only: [:index, :show, :new, :create] do
     resources :team_players, only: [:new, :create]
   end
 

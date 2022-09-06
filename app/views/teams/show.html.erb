@@ -1,5 +1,6 @@
 <div class="container">
   <h1><%= @team.name.capitalize %></h1>
+  <h3>Players:</h3>
 
   <% @team.team_players.each do |team_player| %>
     <p>
@@ -9,9 +10,16 @@
       <% end %>
     </p>
   <% end %>
+
   <hr>
+
   <%= simple_form_for [@team, @team_player] do |f| %>
     <%= f.association :player %>
     <%= f.submit value: "Add Player" %>
   <% end %>
+
+  <hr>
+
+  <%= link_to 'Back to Teams', teams_path %>
+
 </div>
