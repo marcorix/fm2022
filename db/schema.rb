@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_06_092428) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_06_135529) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_06_092428) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "chatrooms", force: :cascade do |t|
+    t.bigint "match_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["match_id"], name: "index_chatrooms_on_match_id"
+  end
+
   create_table "matches", force: :cascade do |t|
     t.bigint "home_player_id"
     t.bigint "away_player_id"
@@ -49,6 +56,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_06_092428) do
     t.datetime "updated_at", null: false
     t.index ["away_player_id"], name: "index_matches_on_away_player_id"
     t.index ["home_player_id"], name: "index_matches_on_home_player_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -88,14 +105,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_06_092428) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chatrooms", "matches"
   add_foreign_key "matches", "users", column: "away_player_id"
   add_foreign_key "matches", "users", column: "home_player_id"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "team_players", "players"
   add_foreign_key "team_players", "teams"
   add_foreign_key "teams", "users"

@@ -5,8 +5,11 @@ puts "Destroing Players"
 Player.destroy_all
 
 puts "Creating User"
-user = User.create!(email: "giorgio@gmail.com", password: 123456)
-puts "Created User with id: #{user.id}"
+user1 = User.create!(email: "giorgio@gmail.com", password: 123456, name: "giorgio")
+puts "Created User with id: #{user1.id}"
+user2 = User.create!(email: "marco@gmail.com", password: 123456, name: "mark")
+puts "Created User with id: #{user2.id}"
+
 
 puts "Creating Players"
 player = Player.create!(name: "Ronaldo",

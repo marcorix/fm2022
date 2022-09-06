@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :team_players, only: [:destroy]
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
 end
