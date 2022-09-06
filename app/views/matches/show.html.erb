@@ -1,0 +1,2 @@
+<h1><%= @match.home_player.teams.last.name %> vs <%= @match.away_player.teams.last.name %></h1>
+<%= link_to 'Messages', chatroom_path(@match.chatrooms.last) %>

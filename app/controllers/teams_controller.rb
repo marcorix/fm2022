@@ -11,6 +11,7 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
     @team_player = TeamPlayer.new
+    @match = Match.new
   end
 
   def create

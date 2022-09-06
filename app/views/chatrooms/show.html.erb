@@ -1,4 +1,7 @@
-<div class="container chatroom">
+<div class="container chatroom"
+     data-controller="chatroom-subscription"
+     data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+
   <h1>#<%= @chatroom.match.home_player.teams.last.name %> vs <%= @chatroom.match.away_player.teams.last.name %></h1>
 
   <div class="messages">

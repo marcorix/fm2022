@@ -20,6 +20,12 @@
 
   <hr>
 
+  <%= simple_form_for [@team, @match] do |f| %>
+    <%= f.submit value: "Create a Match" %>
+  <% end %>
+
+  <hr>
+
   <%= link_to 'Back to Teams', teams_path %>
 
 </div>
