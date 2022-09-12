@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.3"
 
+gem 'acts_as_favoritor', github: 'jonhue/acts_as_favoritor'
+
 gem "devise"
 
 gem "geocoder"

@@ -1,6 +1,7 @@
 class TeamPlayersController < ApplicationController
 
   def create
+    raise
     @player = Player.find(params[:team_player][:player_id])
     @team = Team.find(params[:team_id])
     @team_player = TeamPlayer.new

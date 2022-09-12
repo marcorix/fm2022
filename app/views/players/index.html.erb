@@ -19,6 +19,13 @@
             <h4><%= player.name%></h4>
             <p><%= player.club %></p>
             <p><%= player.nationality %></p>
+            <p><%= player.id %></p>
+            <button data-action="click->favorite#send"
+                    data-controller="favorite"
+                    data-favorite-id-value="<%= player.id%>">
+              <i class="fab fa-gratipay fa-2x" id='favorite-link'></i>
+            </button>
+
           <% end %>
         </div>
       </div>

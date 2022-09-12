@@ -1,7 +1,11 @@
 class MatchesController < ApplicationController
 
   def index
-    @matches = current_user.matches_as_home_player
+    @matches = []
+    if user_signed_in?
+      @matches = current_user.matches_as_home_player
+      @matches.concat(current_user.matches_as_away_player)
+    end
   end
   def show
     @match = Match.find(params[:id])
