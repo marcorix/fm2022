@@ -1,12 +1,16 @@
 <div class="container">
   <h1><%= @team.name.capitalize %></h1>
-
-  <% if current_user.favorited?(@team)  %>
-    <%= link_to 'Remove Favourite', team_favourites_rem_path(@team) %>
-  <% else %>
-    <%= link_to 'Add Favourite', team_favourites_add_path(@team) %>
-  <% end %>
-
+  <div class="favorite">
+    <% if current_user.favorited?(@team)  %>
+      <%= link_to team_favourites_rem_path(@team) do %>
+        <i class="fa-solid fa-heart"></i>
+      <% end %>
+    <% else %>
+      <%= link_to team_favourites_add_path(@team) do %>
+        <i class="fa-regular fa-heart"></i>
+      <% end %>
+    <% end %>
+  </div>
   <h3>Players:</h3>
 
   <% @team.team_players.each do |team_player| %>
