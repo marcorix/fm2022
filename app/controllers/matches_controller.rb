@@ -1,6 +1,7 @@
 class MatchesController < ApplicationController
 
   def index
+    raise
     @matches = []
     if user_signed_in?
       @matches = current_user.matches_as_home_player

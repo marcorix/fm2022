@@ -1,6 +1,8 @@
 class FavoritesController < ApplicationController
 
 
+  def index;end
+
   def add
     team = Team.find(params[:team_id])
     current_user.favorite(team)

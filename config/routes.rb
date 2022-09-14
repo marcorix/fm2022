@@ -14,9 +14,11 @@ Rails.application.routes.draw do
   resources :teams, only: [:index, :show, :new, :create] do
     resources :team_players, only: [:new, :create]
     resources :matches, only: :create
-    get "favourites-add", to: "favorites#add"
-    get "favourites-rem", to: "favorites#remove"
+    get "favorites-add", to: "favorites#add"
+    get "favorites-rem", to: "favorites#remove"
   end
+
+  get "favorites", to: "favorites#index"
 
   resources :matches, only: [:index, :show]
 
